@@ -196,23 +196,22 @@ else: ?><!DOCTYPE html>
 
                     <!-- ADDRESS INFORMATION -->
                     <h2 class="text-center"> Address Information </h2>
-
+                    <!-- Line 199: -->
                     <div class="form-group">
                         <label for="Street"> Street Address </label>
-                        <input type="text" class="form-control" id="street" name="Sender[street]"
-                               placeholder="1565 S. Federal Highway" value="">
+                        <input type="text" class="form-control" id="street" name="street" placeholder="1565 S. Federal Highway">
                     </div>
 
+                    <!-- Line 205: -->
                     <div class="form-group">
                         <label for="City"> City </label>
-                        <input type="text" class="form-control" id="city" name="Sender[city]"
-                               placeholder="West Palm Beach" value="">
+                        <input type="text" class="form-control" id="city" name="city" placeholder="West Palm Beach">
                     </div>
 
+                    <!-- Line 211: -->
                     <div class="form-group">
                         <label for="State"> State </label>
-                        <input type="text" class="form-control" id="state" name="Sender[state]" placeholder="FL"
-                               value="">
+                        <input type="text" class="form-control" id="state" name="state" placeholder="FL" required>
                     </div>
 
                     <div class="form-group">
@@ -296,7 +295,21 @@ else: ?><!DOCTYPE html>
 
     });
 
+        document.getElementById('office').addEventListener('change', function() {
+        var office = this.value;
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                var officeDetails = JSON.parse(xhr.responseText);
+                document.getElementById('office_name').value = officeDetails[office].name;
+                document.getElementById('office_street').value = officeDetails[office].street;
+                document.getElementById('office_contact').value = officeDetails[office].contact;
+            }
+        };
+        xhr.open('GET', 'offices.json', true);
+        xhr.send();
+    });
+
 </script>
 </body>
 </html>
-<?php endif;

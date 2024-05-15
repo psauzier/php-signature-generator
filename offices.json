@@ -1,0 +1,13 @@
+{
+    "office1": {
+        "name": "Office 1",
+        "street": "123 Main Street",
+        "contact": "office1@example.com"
+    },
+    "office2": {
+        "name": "Office 2",
+        "street": "456 Elm Street",
+        "contact": "office2@example.com"
+    }
+    // Add more offices as needed
+}
